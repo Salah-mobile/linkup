@@ -28,19 +28,13 @@
         <section class="space-y-4 md:col-span-2">
 
             <!-- Create Post Box -->
-            <div class="bg-white rounded-lg border border-gray-200 p-4 shadow-sm">
-                <div class="flex items-center space-x-2 mb-3">
-                    <img src="https://via.placeholder.com/150" alt="Avatar" class="w-12 h-12 rounded-full">
-                    <button class="flex-1 text-left bg-gray-50 hover:bg-gray-100 border border-gray-300 rounded-full py-3 px-4 text-sm font-medium text-gray-500 transition">
-                        Commencer un post
-                    </button>
-                </div>
-                <div class="flex justify-between text-gray-500 text-sm font-medium pt-1 px-2">
-                    <button class="hover:bg-gray-100 p-2 rounded flex items-center space-x-2"><i class="fas fa-image text-blue-400"></i> <span>Photo</span></button>
-                    <button class="hover:bg-gray-100 p-2 rounded flex items-center space-x-2"><i class="fab fa-youtube text-green-400"></i> <span>Vidéo</span></button>
-                    <button class="hover:bg-gray-100 p-2 rounded flex items-center space-x-2"><i class="fas fa-calendar-alt text-orange-400"></i> <span>Événement</span></button>
-                    <button class="hover:bg-gray-100 p-2 rounded flex items-center space-x-2"><i class="fas fa-newspaper text-red-400"></i> <span>Rédiger</span></button>
-                </div>
+            <div>
+                <form action="{{route("create.poste")}}" method="post">
+                    @csrf
+                    <textarea name="poste" id="" cols="30" rows="10" required >
+                    </textarea>
+                    <button type="submit">Enregistrer</button>
+                </form>
             </div>
 
             <!-- POST 1 (With Image) -->

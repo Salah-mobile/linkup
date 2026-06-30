@@ -48,6 +48,10 @@
                     <i class="fas fa-bell text-lg mb-1"></i>
                     <span class="hidden sm:inline">Notifications</span>
                 </a>
+                 <a href="{{route("logout")}}" class="flex flex-col items-center text-gray-500 hover:text-red-600 group transition duration-200">
+                    <i class="fas fa-sign-out-alt text-lg mb-1 group-hover:translate-x-0.5 transition-transform duration-200"></i>
+                    <span class="hidden sm:inline text-xs font-semibold uppercase tracking-wider">Log Out</span>
+                </a>
                 <div class="border-l border-gray-200 h-8 h-full hidden sm:block"></div>
                 <a href="#" class="flex flex-col items-center hover:text-black">
                     <img src="https://via.placeholder.com/150" alt="Profile" class="w-6 h-6 rounded-full mb-1">

@@ -37,11 +37,16 @@ class AuthController extends Controller
              $request->session()->regenerate();
              return to_route("feed");
         }
-
+        return  redirect()->back()->withErrors(
+           [
+             "email"=>"email incorrect",
+             "password"=>"password incorrect"
+           ]
+        )->withInput("email");
     }
     public function logOut(Request $request){
         Auth::logout();
-        $request->session->invalidate();
+        $request->session()->invalidate();
         $request->session()->regenerateToken();
         return to_route("register.page");
     }
