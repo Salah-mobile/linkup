@@ -33,7 +33,16 @@ class AuthController extends Controller
             "email"=>"required|email",
             "password"=>"required|min:8"
         ]);
-        Auth::attempt(['email' => $request->email, 'password' => $request->password]);
-        return to_route("feed");
+        if( Auth::attempt(['email' => $request->email, 'password' => $request->password])){
+             $request->session()->regenerate();
+             return to_route("feed");
+        }
+
+    }
+    public function logOut(Request $request){
+        Auth::logout();
+        $request->session->invalidate();
+        $request->session()->regenerateToken();
+        return to_route("register.page");
     }
 }

@@ -8,4 +8,6 @@ Route::controller(AuthController::class)->group(function(){
      Route::get('/registerPage','showregister')->name("register.page");
      Route::post('/login','login')->name("login");
      Route::post('/register','register')->name("register");
+     Route::get('/logout','logOut')->name('logout');
 });
+
