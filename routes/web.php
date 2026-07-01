@@ -12,9 +12,9 @@ Route::controller(AuthController::class)->group(function(){
 Route::middleware('auth')->group(function () {
     Route::controller(PostController::class)->group(function(){
           Route::get('/','index')->name('feed');
-          Route::get('/upadte-poste','pageupadtePoste')->name("update.page.poste");
+          Route::get('/upadte-poste/{post}','pageupadtePoste')->name("update.page.poste");
           Route::post('/createP','createPoste')->name("create.poste");
-          Route::put('/updateP/{id}', 'upadtePoste')->name("update.poste");
+          Route::put('/updateP/{post}', 'upadtePoste')->name("update.poste");
           Route::delete('/deleteP/{post}','deletePoste')->name("delete.poste");
     });
 });

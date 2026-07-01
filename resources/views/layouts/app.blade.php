@@ -64,44 +64,6 @@
     <!-- ========================================== -->
     <main class="max-w-6xl mx-auto px-4 py-6 grid grid-cols-1 md:grid-cols-4 gap-5">
         @yield("content");
-
-        <!-- COLONNE DROITE & FOOTER: News u Footer (1/4) -->
-        <div class="space-y-4 md:col-span-1">
-            <!-- News Card -->
-            <div class="bg-white rounded-lg border border-gray-200 p-4 shadow-sm">
-                <h3 class="font-semibold text-sm mb-3 text-gray-900 flex justify-between items-center">
-                    LinkedIn Actualités <i class="fas fa-info-circle text-gray-500 text-xs"></i>
-                </h3>
-                <ul class="space-y-3 text-xs">
-                    <li class="cursor-pointer group">
-                        <h4 class="font-semibold text-gray-800 group-hover:text-blue-600 group-hover:underline">• Marché de l'emploi en 2026</h4>
-                        <p class="text-gray-500 pl-2">Top tendances - 3,420 lecteurs</p>
-                    </li>
-                    <li class="cursor-pointer group">
-                        <h4 class="font-semibold text-gray-800 group-hover:text-blue-600 group-hover:underline">• L'essor de l'IA au Maroc</h4>
-                        <p class="text-gray-500 pl-2">Il y a 1 jour - 1,250 lecteurs</p>
-                    </li>
-                </ul>
-            </div>
-
-            <!-- ========================================== -->
-            <!-- 3. FOOTER (f l-ymn kima LinkedIn d l-PC)   -->
-            <!-- ========================================== -->
-            <footer class="text-center md:text-left px-2 text-[11px] text-gray-500 space-y-2 sticky top-20">
-                <div class="flex flex-wrap justify-center md:justify-start gap-x-3 gap-y-1">
-                    <a href="#" class="hover:underline hover:text-blue-600">À propos</a>
-                    <a href="#" class="hover:underline hover:text-blue-600">Accessibilité</a>
-                    <a href="#" class="hover:underline hover:text-blue-600">Conditions</a>
-                    <a href="#" class="hover:underline hover:text-blue-600">Politique de confidentialité</a>
-                    <a href="#" class="hover:underline hover:text-blue-600">Cookies</a>
-                </div>
-                <div class="flex items-center justify-center md:justify-start space-x-1 mt-2">
-                    <span class="font-bold text-[#0a66c2]">Linked<i class="fab fa-linkedin"></i></span>
-                    <span>LinkedIn Corporation © 2026</span>
-                </div>
-            </footer>
-        </div>
-
     </main>
 
 </body>

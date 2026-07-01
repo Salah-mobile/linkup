@@ -18,11 +18,16 @@ class PostController extends Controller
                 "user_id"=>auth()->id(),
             ]);
             return to_route("feed");
-
     }
-    public function upadtePoste(){
+    public function upadtePoste(Post $post,Request $request){
+          $request->validate(["content"=>"required|min:20"]);
+          $post->update([
+            "content"=>$request->content,
+          ]);
+          return to_route("feed");
     }
-    public function pageupadtePoste(){
+    public function pageupadtePoste(Post $post){
+        return view("auth.UpdatePostPage",["post"=>$post]);
     }
     public function deletePoste(Post $post){
         $post->delete();

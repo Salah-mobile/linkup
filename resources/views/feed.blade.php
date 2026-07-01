@@ -1,17 +1,13 @@
 @extends('layouts.app')
 @section("content")
-        <!-- COLONNE GAUCHE: Profile card (1/4) -->
         <aside class="space-y-4 md:col-span-1">
             <div class="bg-white rounded-lg border border-gray-200 overflow-hidden shadow-sm">
-                <!-- Banner -->
                 <div class="h-14 bg-gradient-to-r line-gradient from-blue-400 to-indigo-500"></div>
-                <!-- Profile details -->
                 <div class="p-4 pt-0 text-center relative border-b border-gray-200">
                     <img src="https://via.placeholder.com/150" alt="Avatar" class="w-16 h-16 rounded-full border-2 border-white mx-auto -mt-8 mb-3 object-cover">
                     <h2 class="font-semibold text-base hover:underline cursor-pointer">salah eddine tabit</h2>
                     <p class="text-xs text-gray-500 mt-1">Développeur Full-Stack | React & Node.js</p>
                 </div>
-                <!-- Stats -->
                 <div class="p-3 text-xs text-gray-500 space-y-2">
                     <div class="flex justify-between hover:bg-gray-100 p-1 rounded cursor-pointer">
                         <span>Vues du profil</span>
@@ -24,76 +20,30 @@
                 </div>
             </div>
         </aside>
-<!-- COLONNE CENTRALE: Les Posts (2/4) -->
+
         <section class="space-y-4 md:col-span-2">
 
-            <!-- Create Post Box -->
-            <div>
-                <form action="{{route("create.poste")}}" method="post">
+            <div class="bg-white rounded-xl border border-slate-200 p-4 shadow-sm">
+                <form action="{{route("create.poste")}}" method="post" class="space-y-3">
                     @csrf
-                    <textarea name="poste" id="" cols="30" rows="10" required >
-                    </textarea>
-                    <button type="submit">Enregistrer</button>
-                </form>
-            </div>
-
-            <!-- POST 1 (With Image) -->
-            <article class="bg-white rounded-lg border border-gray-200 shadow-sm">
-                <!-- Post Header -->
-                <div class="flex items-center justify-between p-4 pb-2">
-                    <div class="flex items-center space-x-3">
-                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150" alt="Author" class="w-12 h-12 rounded-full object-cover">
-                        <div>
-                            <h3 class="font-semibold text-sm hover:text-blue-600 hover:underline cursor-pointer">Anas Mansouri</h3>
-                            <p class="text-xs text-gray-500">UI/UX Designer chez TechSolutions</p>
-                            <p class="text-xs text-gray-400 flex items-center mt-0.5">2 h • <i class="fas fa-globe-americas ml-1"></i></p>
+                    <div class="flex space-x-3 items-start">
+                        <div class="flex-1">
+                            <textarea name="poste" rows="3" required
+                                class="w-full text-sm text-slate-700 placeholder-slate-400 border border-slate-100 focus:border-slate-200 focus:ring-0 resize-none rounded-lg p-2 bg-slate-50/50"
+                                placeholder="Quoi de neuf, Partagez vos idées..."></textarea>
                         </div>
                     </div>
-                    <button class="text-gray-500 hover:bg-gray-100 w-8 h-8 rounded-full"><i class="fas fa-ellipsis-h"></i></button>
-                </div>
-                <!-- Post Content -->
-                <div class="px-4 pb-3 text-sm text-gray-800 leading-relaxed">
-                    Had l-interface dyal LinkedIn tqaddat ghir b HTML u Tailwind CSS! Chnu ban likom f had l-design l-hmer? 🚀 #webdevelopment #uxui #coding
-                </div>
-                <!-- Post Media -->
-                <div class="bg-gray-100">
-                    <img src=
-                    "https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=800" alt="Post Image" class="w-full max-h-96 object-cover">
-                </div>
-                <!-- Post Stats -->
-                <div class="flex justify-between items-center px-4 py-2 text-xs text-gray-500 border-b border-gray-100">
-                    <div class="flex items-center space-x-1">
-                        <span class="bg-blue-500 text-white p-0.5 rounded-full text-[10px]"><i class="fas fa-thumbs-up"></i></span>
-                        <span class="bg-red-500 text-white p-0.5 rounded-full text-[10px]"><i class="fas fa-heart"></i></span>
-                        <span>Yassine u 42 akharin</span>
+                    <div class="flex justify-end pt-2 border-t border-slate-100">
+                        <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-medium text-xs px-4 py-2 rounded-full transition duration-200 shadow-sm">
+                            Publier
+                        </button>
                     </div>
-                    <div>
-                        <span class="hover:underline cursor-pointer">12 commentaires</span>
-                    </div>
-                </div>
-                <!-- Post Actions -->
-                <div class="flex justify-between px-2 py-1 text-gray-500 text-sm font-semibold">
-                    <button class="flex-1 hover:bg-gray-100 py-2.5 rounded flex items-center justify-center space-x-2"><i class="far fa-thumbs-up"></i> <span>J'aime</span></button>
-                    <button class="flex-1 hover:bg-gray-100 py-2.5 rounded flex items-center justify-center space-x-2"><i class="far fa-comment-alt"></i> <span>Commenter</span></button>
-                    <button class="flex-1 hover:bg-gray-100 py-2.5 rounded flex items-center justify-center space-x-2"><i class="fas fa-retweet"></i> <span>Partager</span></button>
-                    <button class="flex-1 hover:bg-gray-100 py-2.5 rounded flex items-center justify-center space-x-2"><i class="far fa-paper-plane"></i> <span>Envoyer</span></button>
-                </div>
-            </article>
-
-           @forelse($posts as $post)
+                </form>
+            </div>
+            @forelse($posts as $post)
             <article class="bg-white border border-slate-200/70 rounded-xl shadow-[0_1px_2px_rgba(0,0,0,0.02)] hover:border-slate-300 transition duration-200 group">
 
                 <div class="p-4 flex items-start justify-between">
-                     @can('update',$post)
-                          <form action="{{route("delete.poste",$post)}}" method="post">
-                            @csrf
-                             @method("DELETE")
-                            <button>delete</button>
-                          </form>
-                          <a href="{{route("update.page.poste",$post->id)}}">
-                            update
-                          </a>
-                     @endcan
                     <div class="flex items-center space-x-3">
                         <img src="{{ $post->user->image_url ?? 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=200&auto=format&fit=crop' }}"
                              alt="{{ $post->user->name }}"
@@ -111,8 +61,36 @@
                         </div>
                     </div>
 
-                    <span class="text-[10px] text-slate-400 font-normal">
-                        {{ $post->created_at->diffForHumans(null, true) }} </span>
+                    <div class="flex items-center space-x-2">
+                        <span class="text-[10px] text-slate-400 font-normal mr-1">
+                            {{ $post->created_at->diffForHumans(null, true) }}
+                        </span>
+
+                        @can('update', $post)
+                        <div class="flex items-center space-x-1 border-l border-slate-100 pl-2">
+                            <a href="{{route("update.page.poste",$post->id)}}"
+                               class="p-1.5 text-slate-400 hover:text-blue-600 hover:bg-slate-50 rounded-lg transition duration-150"
+                               title="Modifier">
+                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125"></path>
+                                </svg>
+                            </a>
+
+                            <form action="{{route("delete.poste",$post)}}" method="post" class="inline">
+                                @csrf
+                                @method("DELETE")
+                                <button type="submit"
+                                        class="p-1.5 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition duration-150"
+                                        title="Supprimer"
+                                        onclick="return confirm('Bghiti tmseh had l-post?')">
+                                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"></path>
+                                    </svg>
+                                </button>
+                            </form>
+                        </div>
+                        @endcan
+                    </div>
                 </div>
 
                 <div class="px-4 pb-3">
@@ -134,10 +112,10 @@
                 </div>
 
             </article>
-        @empty
+            @empty
             <div class="bg-white border border-dashed border-slate-200 p-8 rounded-xl text-center text-slate-400 text-xs">
                 Aucun post disponible.
             </div>
-        @endforelse
+            @endforelse
         </section>
 @endsection('content')
