@@ -14,7 +14,7 @@ Route::middleware('auth')->group(function () {
           Route::get('/','index')->name('feed');
           Route::get('/upadte-poste','pageupadtePoste')->name("update.page.poste");
           Route::post('/createP','createPoste')->name("create.poste");
-          Route::put('/updateP', 'upadtePoste')->name("update.poste");
-          Route::delete('/deleteP','deletePoste')->name("delete.poste");
+          Route::put('/updateP/{id}', 'upadtePoste')->name("update.poste");
+          Route::delete('/deleteP/{post}','deletePoste')->name("delete.poste");
     });
 });

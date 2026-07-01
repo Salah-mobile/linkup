@@ -84,6 +84,16 @@
             <article class="bg-white border border-slate-200/70 rounded-xl shadow-[0_1px_2px_rgba(0,0,0,0.02)] hover:border-slate-300 transition duration-200 group">
 
                 <div class="p-4 flex items-start justify-between">
+                     @can('update',$post)
+                          <form action="{{route("delete.poste",$post)}}" method="post">
+                            @csrf
+                             @method("DELETE")
+                            <button>delete</button>
+                          </form>
+                          <a href="{{route("update.page.poste",$post->id)}}">
+                            update
+                          </a>
+                     @endcan
                     <div class="flex items-center space-x-3">
                         <img src="{{ $post->user->image_url ?? 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=200&auto=format&fit=crop' }}"
                              alt="{{ $post->user->name }}"

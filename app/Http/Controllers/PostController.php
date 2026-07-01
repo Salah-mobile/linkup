@@ -21,12 +21,11 @@ class PostController extends Controller
 
     }
     public function upadtePoste(){
-
     }
     public function pageupadtePoste(){
-
     }
-    public function deletePoste(){
-
+    public function deletePoste(Post $post){
+        $post->delete();
+        return to_route("feed");
     }
 }
