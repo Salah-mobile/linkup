@@ -11,7 +11,7 @@ Route::controller(AuthController::class)->group(function(){
      Route::post('/register','register')->name("register");
      Route::get('/logout','logOut')->name('logout');
 });
-Route::controller(ForgotPasswordController::class)->group(function(){
+Route::controller(ForgotPasswordController::class)->group(function(){ 
     Route::get('/forget-password/{}',"showForgotForm")->name("password.reset");
     Route::post('/forget-password',"sendEmailPasword")->name("forget.password.post");
 });

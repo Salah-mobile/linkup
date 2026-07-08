@@ -18,7 +18,9 @@ class CommentaireController extends Controller
       ]);
     return to_route("feed");
     }
-    function deleteCom(){
+    function deleteCom(Commentaire $com){
+           $com->delete();
+           return to_route('feed');
 
     }
     function updateCom(){
