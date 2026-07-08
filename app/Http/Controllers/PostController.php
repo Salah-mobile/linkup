@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use  App\Models\Post;
+use  App\Models\Commentaire;
 class PostController extends Controller
 {
     public function index(){
         $posts=Post::with('user')->latest()->get();
-        return view('feed',['posts'=>$posts]);
+        $commentaire=Commentaire::with(['user', 'post'])->latest()->get();
+        return view('feed',['posts'=>$posts,'commentaire'=>$commentaire]);
     }
     public function createPoste(Request $request){
             $request->validate([

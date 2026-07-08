@@ -33,6 +33,12 @@
                                 placeholder="Quoi de neuf, Partagez vos idées..."></textarea>
                         </div>
                     </div>
+                    @error("poste")
+                       <p class="text-xs font-medium text-red-600 mt-1.5 flex items-center gap-1">
+                           <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path></svg>
+                           {{$message}}
+                       </p>
+                   @enderror
                     <div class="flex justify-end pt-2 border-t border-slate-100">
                         <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-medium text-xs px-4 py-2 rounded-full transition duration-200 shadow-sm">
                             Publier
@@ -105,10 +111,17 @@
                         <span>J'aime</span>
                     </button>
 
-                    <button class="flex items-center space-x-1.5 hover:text-slate-700 transition cursor-pointer">
+                    <button class="flex items-center space-x-1.5 hover:text-slate-700 transition cursor-pointer commente" >
                         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
                         <span>Commenter</span>
                     </button>
+                </div>
+                <div class="place-commante hidden">
+                    <input type="text" placeholder="write here a commante">
+                    <button>create</button>
+                </div>
+                <div>
+
                 </div>
 
             </article>
@@ -118,4 +131,17 @@
             </div>
             @endforelse
         </section>
+         <script >
+            console.log("hello word");
+            let btns=document.querySelectorAll(".commente")
+            let placeCommante=document.querySelectorAll(".place-commante")
+            for (let i = 0; i < btns.length; i++) {
+                btns[i].addEventListener("click",()=>{
+                  placeCommante[i].classList.toggle("hidden")
+                })
+            }
+            
+
+
+         </script>
 @endsection('content')

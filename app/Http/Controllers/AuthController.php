@@ -42,7 +42,7 @@ class AuthController extends Controller
              "email"=>"email incorrect",
              "password"=>"password incorrect"
            ]
-        )->withInput("email");
+        )->withInput();
     }
     public function logOut(Request $request){
         Auth::logout();
