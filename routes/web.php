@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\CommentaireController;
+use App\Http\Controllers\LikeController;
 Route::controller(AuthController::class)->group(function(){
      Route::get('/loginPage','showlogin')->name("login.page");
      Route::get('/registerPage','showregister')->name("register.page");
@@ -11,7 +12,7 @@ Route::controller(AuthController::class)->group(function(){
      Route::post('/register','register')->name("register");
      Route::get('/logout','logOut')->name('logout');
 });
-Route::controller(ForgotPasswordController::class)->group(function(){ 
+Route::controller(ForgotPasswordController::class)->group(function(){
     Route::get('/forget-password/{}',"showForgotForm")->name("password.reset");
     Route::post('/forget-password',"sendEmailPasword")->name("forget.password.post");
 });
@@ -27,5 +28,8 @@ Route::middleware('auth')->group(function () {
     Route::controller(CommentaireController::class)->group(function(){
           Route::post("/create-com",'createCom')->name("com.create");
           Route::delete("/delete-com/{com}","deleteCom")->name("com.delete");
+    });
+    Route::controller(LikeController::class)->group(function(){
+        Route::post("/like-toggle/{post}","toogle")->name("like.toggle");
     });
 });

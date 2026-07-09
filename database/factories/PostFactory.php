@@ -20,6 +20,7 @@ class PostFactory extends Factory
        return [
             'content'=>fake()->paragraph(3),
             'user_id' => User::inRandomOrder()->first()?->id ?? User::factory(),
+            
         ];
     }
 }

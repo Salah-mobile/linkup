@@ -20,7 +20,6 @@
                 </div>
             </div>
         </aside>
-
         <section class="space-y-4 md:col-span-2">
 
             <div class="bg-white rounded-xl border border-slate-200 p-4 shadow-sm">
@@ -106,10 +105,18 @@
                 </div>
 
                 <div class="px-4 py-2 bg-slate-50/50 border-t border-slate-100 flex items-center space-x-4 text-slate-400 text-[11px] font-medium">
-                    <button class="flex items-center space-x-1.5 hover:text-blue-600 transition cursor-pointer">
-                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 10h4.757c.746 0 1.436.318 1.908.878l.4.472c.446.527.62 1.233.474 1.91l-1.242 5.8a3 3 0 01-2.93 2.37H7a1 1 0 01-1-1v-8a1 1 0 01.3-.7l5.4-5.4a1 1 0 011.414 0l1.242 1.242c.325.325.508.766.508 1.226V10zM6 21H4a1 1 0 01-1-1v-8a1 1 0 011-1h2v10z"></path></svg>
-                        <span>J'aime</span>
-                    </button>
+                    <form action="{{route('like.toggle',$post)}}" method="post">
+                        @csrf
+                        <button class="flex items-center space-x-1.5 transition cursor-pointer
+                            {{ $likes->where('post_id', $post->id)->where('user_id', auth()->id())->isNotEmpty()
+                                ? 'text-blue-600'
+                                : 'text-gray-500 hover:text-blue-600' }}">
+                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 10h4.757c.746 0 1.436.318 1.908.878l.4.472c.446.527.62 1.233.474 1.91l-1.242 5.8a3 3 0 01-2.93 2.37H7a1 1 0 01-1-1v-8a1 1 0 01.3-.7l5.4-5.4a1 1 0 011.414 0l1.242 1.242c.325.325.508.766.508 1.226V10zM6 21H4a1 1 0 01-1-1v-8a1 1 0 011-1h2v10z"></path></svg>
+                            <span>
+                               {{$likes->where('post_id',$post->id)->count()}}
+                            </span>
+                        </button>
+                    </form>
 
                     <button class="flex items-center space-x-1.5 hover:text-slate-700 transition cursor-pointer commente">
                         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
@@ -152,7 +159,6 @@
                                             {{ $com->user->name }}
                                         </h4>
                                     </div>
-
                                     <p class="text-slate-600 text-xs mt-0.5 whitespace-pre-line leading-normal">
                                         {{ $com->content }}
                                     </p>
@@ -169,14 +175,12 @@
                                             </form>
                                         </div>
                                     @endcan
-
                                 </div>
                             </div>
                         @endif
                     @endforeach
                 </div>
                 </div>
-
             </article>
             @empty
             <div class="bg-white border border-dashed border-slate-200 p-8 rounded-xl text-center text-slate-400 text-xs">

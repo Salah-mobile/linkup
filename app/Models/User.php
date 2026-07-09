@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Models;
-
+use App\Models\Like;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -51,5 +51,8 @@ class User extends Authenticatable
     }
     function commentaire(){
         return $this->hasMany(Commentaire::class);
+    }
+    function like(){
+        return $this->hasMany(Like::class);
     }
 }

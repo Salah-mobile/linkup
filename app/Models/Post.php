@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models;
+use  App\Models\Like;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -19,5 +20,8 @@ class Post extends Model
     }
     public function commentaire(){
         return $this->hasMany(Commentaire::class);
+    }
+    public function like(){
+        return $this->hasMany(Like::class);
     }
 }
