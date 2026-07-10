@@ -2,6 +2,7 @@
 
 namespace App\Models;
 use  App\Models\Like;
+use  App\Models\Save;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -23,5 +24,8 @@ class Post extends Model
     }
     public function like(){
         return $this->hasMany(Like::class);
+    }
+    public function saves(){
+        return $this->hasMany(Save::class);
     }
 }

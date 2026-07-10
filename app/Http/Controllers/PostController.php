@@ -5,13 +5,15 @@ use Illuminate\Http\Request;
 use  App\Models\Post;
 use  App\Models\Commentaire;
 use  App\Models\Like;
+use  App\Models\Save;
 class PostController extends Controller
 {
     public function index(){
         $posts=Post::with('user')->latest()->get();
         $commentaire=Commentaire::with(['user', 'post'])->latest()->get();
         $likes=Like::with(['user','post'])->latest()->get();
-        return view('feed',['posts'=>$posts,'commentaire'=>$commentaire,'likes'=>$likes]);
+        $saves=Save::with(['post','user'])->latest()->get();
+        return view('feed',['posts'=>$posts,'commentaire'=>$commentaire,'likes'=>$likes,"saves"=>$saves]);
     }
     public function createPoste(Request $request){
             $request->validate([

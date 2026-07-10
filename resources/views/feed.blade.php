@@ -51,9 +51,11 @@
 
                 <div class="p-4 flex items-start justify-between">
                     <div class="flex items-center space-x-3">
-                        <img src="{{ $post->user->image_url ?? 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=200&auto=format&fit=crop' }}"
-                             alt="{{ $post->user->name }}"
-                             class="w-9 h-9 rounded-xl object-cover ring-2 ring-slate-50">
+                        <a href="{{route("profil",$post->user)}}">
+                            <img src="{{ $post->user->image_url ?? 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=200&auto=format&fit=crop' }}"
+                                 alt="{{ $post->user->name }}"
+                                 class="w-9 h-9 rounded-xl object-cover ring-2 ring-slate-50">
+                        </a>
                         <div>
                             <h3 class="font-semibold text-slate-900 text-xs hover:text-blue-600 cursor-pointer transition">
                                 {{ $post->user->name }}
@@ -122,6 +124,14 @@
                         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
                         <span>Commenter</span>
                     </button>
+                    <form action="{{route("save.togle",$post)}}" method="POST">
+                        @csrf
+                        <button type="submit" class="{{
+                           $saves->where("user_id",Auth::id())->where("post_id",$post->id)->isNotEmpty()
+                           ? 'text-blue-600'
+                           : 'text-gray-500 hover:text-blue-600'
+                        }}">save</button>
+                    </form>
                 </div>
 
                 <div class="place-commante hidden border-t border-slate-100 bg-slate-50/30 p-4 rounded-b-xl space-y-4">

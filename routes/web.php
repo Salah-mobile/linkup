@@ -5,6 +5,8 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\CommentaireController;
 use App\Http\Controllers\LikeController;
+use App\Http\Controllers\ProfilController;
+use App\Http\Controllers\SaveController;
 Route::controller(AuthController::class)->group(function(){
      Route::get('/loginPage','showlogin')->name("login.page");
      Route::get('/registerPage','showregister')->name("register.page");
@@ -12,11 +14,6 @@ Route::controller(AuthController::class)->group(function(){
      Route::post('/register','register')->name("register");
      Route::get('/logout','logOut')->name('logout');
 });
-Route::controller(ForgotPasswordController::class)->group(function(){
-    Route::get('/forget-password/{}',"showForgotForm")->name("password.reset");
-    Route::post('/forget-password',"sendEmailPasword")->name("forget.password.post");
-});
-
 Route::middleware('auth')->group(function () {
     Route::controller(PostController::class)->group(function(){
           Route::get('/','index')->name('feed');
@@ -32,4 +29,7 @@ Route::middleware('auth')->group(function () {
     Route::controller(LikeController::class)->group(function(){
         Route::post("/like-toggle/{post}","toogle")->name("like.toggle");
     });
+    Route::get("/profile/{user}",[ProfilController::class,"showProfil"])->name("profil");
+    Route::post("/save/{post}",[SaveController::class,"toogleSave"])->name("save.togle");
+
 });

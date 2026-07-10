@@ -2,6 +2,7 @@
 
 namespace App\Models;
 use App\Models\Like;
+use App\Models\Save;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -54,5 +55,8 @@ class User extends Authenticatable
     }
     function like(){
         return $this->hasMany(Like::class);
+    }
+    function saves(){
+        return $this->hasMany(Save::class);
     }
 }
