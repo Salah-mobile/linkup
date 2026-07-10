@@ -23,6 +23,6 @@ class LikeController extends Controller
                 ]
             );
         }
-        return to_route("feed");
+        return back();
     }
 }

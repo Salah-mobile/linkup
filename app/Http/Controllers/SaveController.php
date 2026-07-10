@@ -1,8 +1,10 @@
 <?php
-
 namespace App\Http\Controllers;
 use  App\Models\Post;
 use  App\Models\Save;
+use  App\Models\Commentaire;
+use  App\Models\Like;
+use  App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -19,14 +21,7 @@ class SaveController extends Controller
                 "post_id"=>$post->id,
             ]);
          }
-         return to_route("feed");
+         return back();
      }
-     function showSaves(){
-        $post=Post::with(["user"])->where("user_id",Auth::id())->latest()->get();
-        $commentaire=Commentaire::with(['user', 'post'])->latest()->get();
-        $likes=Like::with(['user','post'])->latest()->get();
-        $saves=Save::with(['post','user'])->latest()->get();
-        
 
-     }
 }

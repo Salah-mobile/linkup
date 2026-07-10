@@ -31,5 +31,6 @@ Route::middleware('auth')->group(function () {
     });
     Route::get("/profile/{user}",[ProfilController::class,"showProfil"])->name("profil");
     Route::post("/save/{post}",[SaveController::class,"toogleSave"])->name("save.togle");
+    Route::get("/save-page",[SaveController::class,"showSaves"])->name("save.page");
 
 });
